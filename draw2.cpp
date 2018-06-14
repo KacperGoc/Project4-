@@ -18,19 +18,38 @@ TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 int Lenght1 = 150;
 int Lenght2 = 100;
 int N = 1;
+int n = 0;
 int value = N;
 double pi = 3.1415926535897;
 double T = 0;
 double A = 0;
 double Delay = 0.05;
+double AX1 = 220, AY1 = 380;
+double AX2 = 290, AY2 = 380;
+double AX3 = 340, AY3 = 380;
+double AX4 = 490, AY4 = 380;
+double AX5 = 560, AY5 = 380;
+double AX6 = 600, AY6 = 380;
 int Angle1 = 0;
 int Angle2 = 0;
 int Angle1_saved = 0;
 int Angle2_saved= 0;
 int range = 18;
+bool Hold = false;
+bool HoldBox1 = false;
+bool HoldBox2 = false;
+bool HoldBox3 = false;
+bool HoldBox4 = false;
+bool HoldBox5 = false;
+bool HoldBox6 = false;
 bool repaint=true;
 bool animation = false;
-
+Point Box1(220, 380);
+Point Box2(290, 380);
+Point Box3(340, 380);
+Point Box4(490, 380);
+Point Box5(560, 380);
+Point Box6(600, 380);
 // buttons
 HWND hwndButton;
 
@@ -94,6 +113,19 @@ void MyOnPaint(HDC hdc)
 			A = A + Delay;
 
 		}
+		Point Box1(220, 380);
+		graphics.DrawRectangle(&pen2, Box1.X, Box1.Y, 20, 20);
+		Point Box2(290, 380);
+		graphics.DrawRectangle(&pen2, Box2.X, Box2.Y, 20, 20);
+		Point Box3(340, 380);
+		graphics.DrawRectangle(&pen2, Box3.X, Box3.Y, 20, 20);
+		Point Box4(490, 380);
+		graphics.DrawRectangle(&pen2, Box4.X, Box4.Y, 20, 20);
+		Point Box5(560, 380);
+		graphics.DrawRectangle(&pen2, Box5.X, Box5.Y, 20, 20);
+		Point Box6(600, 380);
+		graphics.DrawRectangle(&pen2, Box6.X, Box6.Y, 20, 20);
+
 	}
 	else
 	{
@@ -108,7 +140,183 @@ void MyOnPaint(HDC hdc)
 		Point second2(cos((Angle1 + Angle2)*pi / range) * Lenght2, sin((Angle1 + Angle2)*pi / range) * Lenght2);
 		graphics.DrawLine(&pen, first2.X, first2.Y, first2.X + second2.X, first2.Y - second2.Y);
 	}
+		if (Hold) {
+			if (HoldBox1) {
+				Point Box1(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box1.X, Box1.Y, 20, 20);
+				if (Box1.X < Box2.X + 20 && Box1.X > Box2.X - 20 || Box1.X < Box3.X + 20 && Box1.X > Box3.X - 20 || Box1.X < Box4.X + 20 && Box1.X > Box4.X - 20 || Box1.X < Box5.X + 20 && Box1.X > Box5.X - 20 || Box1.X < Box6.X + 20 && Box1.X > Box6.X - 20) {
+					AX1 = first2.X + second2.X - 10;
+					AY1 = 380 - 20 * n;
+				}
+				else {
+					AX1 = first2.X + second2.X - 10;
+					AY1 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX1, AY1, 20, 20);
+			}
+			if (HoldBox2) {
+				Point Box2(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box2.X, Box2.Y, 20, 20);
+				if (Box2.X < Box1.X + 20 && Box2.X > Box1.X - 20 || Box2.X < Box3.X + 20 && Box2.X > Box3.X - 20 || Box2.X < Box4.X + 20 && Box2.X > Box4.X - 20 || Box2.X < Box5.X + 20 && Box2.X > Box5.X - 20 || Box2.X < Box6.X + 20 && Box2.X > Box6.X - 20) {
+					AX2 = first2.X + second2.X - 10;
+					AY2 = 380 - 20 * n;
+				}
+				else {
+					AX2 = first2.X + second2.X - 10;
+					AY2 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX2, AY2, 20, 20);
+			}
+			if (HoldBox3) {
+				Point Box3(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box3.X, Box3.Y, 20, 20);
+				if (Box3.X < Box2.X + 20 && Box3.X > Box2.X - 20 || Box3.X < Box1.X + 20 && Box3.X > Box1.X - 20 || Box3.X < Box4.X + 20 && Box3.X > Box4.X - 20 || Box3.X < Box5.X + 20 && Box3.X > Box5.X - 20 || Box3.X < Box6.X + 20 && Box3.X > Box6.X - 20) {
+					AX3 = first2.X + second2.X - 10;
+					AY3 = 380 - 20 * n;
+				}
+				else {
+					AX3 = first2.X + second2.X - 10;
+					AY3 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX3, AY3, 20, 20);
+			}
+			if (HoldBox4) {
+				Point Box4(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box4.X, Box4.Y, 20, 20);
+				if (Box4.X < Box2.X + 20 && Box4.X > Box2.X - 20 || Box4.X < Box3.X + 20 && Box4.X > Box3.X - 20 || Box4.X < Box1.X + 20 && Box4.X > Box1.X - 20 || Box4.X < Box5.X + 20 && Box4.X > Box5.X - 20 || Box4.X < Box6.X + 20 && Box4.X > Box6.X - 20) {
+					AX4 = first2.X + second2.X - 10;
+					AY4 = 380 - 20 * n;
+				}
+				else {
+					AX4 = first2.X + second2.X - 10;
+					AY4 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX4, AY4, 20, 20);
+			}
+			if (HoldBox5) {
+				Point Box5(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box5.X, Box5.Y, 20, 20);
+				if (Box5.X < Box2.X + 20 && Box5.X > Box2.X - 20 || Box5.X < Box3.X + 20 && Box5.X > Box3.X - 20 || Box5.X < Box4.X + 20 && Box5.X > Box4.X - 20 || Box5.X < Box1.X + 20 && Box5.X > Box1.X - 20 || Box5.X < Box6.X + 20 && Box5.X > Box6.X - 20) {
+					AX5 = first2.X + second2.X - 10;
+					AY5 = 380 - 20 * n;
+				}
+				else {
+					AX5 = first2.X + second2.X - 10;
+					AY5 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX5, AY5, 20, 20);
+			}
+			if (HoldBox6) {
+				Point Box6(first2.X + second2.X - 10, first2.Y - second2.Y - 10);
+				graphics.DrawRectangle(&pen3, Box6.X, Box6.Y, 20, 20);
+				if (Box6.X < Box2.X + 20 && Box6.X > Box2.X - 20 || Box6.X < Box3.X + 20 && Box6.X > Box3.X - 20 || Box6.X < Box4.X + 20 && Box6.X > Box4.X - 20 || Box6.X < Box5.X + 20 && Box6.X > Box5.X - 20 || Box6.X < Box1.X + 20 && Box6.X > Box1.X - 20) {
+					AX6 = first2.X + second2.X - 10;
+					AY6 = 380 - 20 * n;
+				}
+				else {
+					AX6 = first2.X + second2.X - 10;
+					AY6 = 380;
+				}
+			}
+			else {
+				graphics.DrawRectangle(&pen2, AX6, AY6, 20, 20);
+			}
+			if (first2.X + second2.X >= Box1.X && first2.X + second2.X <= Box1.X + 20 && first2.Y - second2.Y >= Box1.Y && first2.Y - second2.Y <= Box1.Y + 20) {
+				if (HoldBox2 == 0 && HoldBox3 == false && HoldBox4 == false && HoldBox5 == false && HoldBox6 == false) {
+					Point Box1(second2.X + first2.X - 10 + AX1, first2.Y - second2.Y - 10 + AY1);
+					graphics.DrawRectangle(&pen2, AX1, AY1, 20, 20);
+					HoldBox1 = true;
+				}
 
+			}
+			else {
+				//	graphics.DrawRectangle(&pen2, Box1.X, Box1.Y, 20, 20);
+			}
+
+			if (first2.X + second2.X >= Box2.X && first2.X + second2.X <= Box2.X + 20 && first2.Y - second2.Y >= Box2.Y &&  first2.Y - second2.Y <= Box2.Y + 20) {
+				if (HoldBox1 == 0 && HoldBox3 == false && HoldBox4 == false && HoldBox5 == false && HoldBox6 == false) {
+					Point Box2(second2.X + first2.X - 10 + AX2, first2.Y - second2.Y - 10 + AY2);
+					graphics.DrawRectangle(&pen2, AX2, AY2, 20, 20);
+					HoldBox2 = true;
+				}
+
+			}
+			else {
+				//	graphics.DrawRectangle(&pen2, Box2.X, Box2.Y, 20, 20);
+			}
+			if (first2.X + second2.X >= Box3.X && first2.X + second2.X <= Box3.X + 20 && first2.Y - second2.Y >= Box3.Y && first2.Y - second2.Y <= Box3.Y + 20) {
+				if (HoldBox1 == 0 && HoldBox2 == false && HoldBox4 == false && HoldBox5 == false && HoldBox6 == false) {
+					Point Box3(second2.X + first2.X - 10 + AX3, first2.Y - second2.Y - 10 + AY3);
+					graphics.DrawRectangle(&pen3, AX3, AY3, 20, 20);
+					HoldBox3 = true;
+				}
+
+			}
+			else {
+				//	graphics.DrawRectangle(&pen2, Box3.X, Box3.Y, 20, 20);
+			}
+			if (first2.X + second2.X >= Box4.X && first2.X + second2.X <= Box4.X + 20 && first2.Y - second2.Y >= Box4.Y && first2.Y - second2.Y <= Box4.Y + 20) {
+				if (HoldBox1 == 0 && HoldBox2 == false && HoldBox3 == false && HoldBox5 == false && HoldBox6 == false) {
+					Point Box4(second2.X + first2.X - 10 + AX4, first2.Y - second2.Y - 10 + AY4);
+					graphics.DrawRectangle(&pen3, AX4, AY4, 20, 20);
+					HoldBox4 = true;
+				}
+
+			}
+			else {
+				//	graphics.DrawRectangle(&pen2, Box4.X, Box4.Y, 20, 20);
+			}
+			if (first2.X + second2.X >= Box5.X && first2.X + second2.X <= Box5.X + 20 && first2.Y - second2.Y >= Box5.Y && first2.Y - second2.Y <= Box5.Y + 20) {
+				if (HoldBox1 == 0 && HoldBox2 == false && HoldBox3 == false && HoldBox4 == false && HoldBox6 == false) {
+					Point Box5(second2.X + first2.X - 10 + AX5, first2.Y - second2.Y - 10 + AY5);
+					graphics.DrawRectangle(&pen3, AX5, AY5, 20, 20);
+					HoldBox5 = true;
+				}
+
+			}
+			else {
+				//	graphics.DrawRectangle(&pen2, Box5.X, Box5.Y, 20, 20);
+			}
+			if (first2.X + second2.X >= Box6.X && first2.X + second2.X <= Box6.X + 20 && first2.Y - second2.Y >= Box6.Y && first2.Y - second2.Y <= Box6.Y + 20) {
+				if (HoldBox1 == 0 && HoldBox2 == false && HoldBox3 == false && HoldBox4 == false && HoldBox5 == false) {
+					Point Box6(second2.X + first2.X - 10 + AX6, first2.Y - second2.Y - 10 + AY6);
+					graphics.DrawRectangle(&pen3, AX6, AY6, 20, 20);
+					HoldBox6 = true;
+				}
+
+			}
+			else {
+				//graphics.DrawRectangle(&pen2, Box6.X, Box6.Y, 20, 20);
+			}
+
+			//graphics.DrawRectangle(&pen2, Box1.X, Box1.Y, 20, 20);
+			//	Point Box2(290, 380);
+			//	graphics.DrawRectangle(&pen2, Box2.X, Box2.Y, 20, 20);
+			//	Point Box3(340, 380);
+			//	graphics.DrawRectangle(&pen2, Box3.X, Box3.Y, 20, 20);
+			//	Point Box4(490, 380);
+			//	graphics.DrawRectangle(&pen2, Box4.X, Box4.Y, 20, 20);
+			//	Point Box5(560, 380);
+			//	graphics.DrawRectangle(&pen2, Box5.X, Box5.Y, 20, 20);
+		}
+		else {
+			graphics.DrawRectangle(&pen2, AX1, AY1, 20, 20);
+			graphics.DrawRectangle(&pen2, AX2, AY2, 20, 20);
+			graphics.DrawRectangle(&pen2, AX3, AY3, 20, 20);
+			graphics.DrawRectangle(&pen2, AX4, AY4, 20, 20);
+			graphics.DrawRectangle(&pen2, AX5, AY5, 20, 20);
+			graphics.DrawRectangle(&pen2, AX6, AY6, 20, 20);
+		}
 }
 void repaintWindow(HWND hWnd, HDC &hdc, PAINTSTRUCT &ps, RECT *drawArea)
 {
@@ -392,11 +600,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 	case ID_BUTTON6:
 			repaint = true;
+			Hold = true;
+			n++;
 			repaintWindow(hWnd, hdc, ps, &drawArea1);
 			break;
 		case ID_BUTTON7:
 			repaint = true;
 			repaintWindow(hWnd, hdc, ps, &drawArea1);
+			Hold = false;
+			HoldBox1 = false;
+			HoldBox2 = false;
+			HoldBox3 = false;
+			HoldBox4 = false;
+			HoldBox5 = false;
+			HoldBox6 = false;
 			break;
 
 		case ID_RBUTTON1:
